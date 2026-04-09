@@ -23,18 +23,18 @@ const ListSection = ({
 
 export function ReportPanel({ document }: ReportPanelProps) {
   return (
-    <section className="panel stack reportPanel">
+    <section className="workspaceSection stack reportPanel" id="analysis-brief">
       <div className="panelHeader">
-        <h2>Analysis package</h2>
+        <span className="sectionKicker">Output</span>
+        <h2>Analysis brief</h2>
         <p className="meta">
-          Review the structured output generated from the selected source
-          document.
+          Review the structured brief generated from the selected source.
         </p>
       </div>
 
       {document ? (
-        <div className="stack">
-          <div>
+        <div className="stack reportContent">
+          <div className="reportHeadline">
             <h3>{document.title}</h3>
             <div className="meta">
               {new Date(document.createdAt).toLocaleString()}
@@ -44,7 +44,7 @@ export function ReportPanel({ document }: ReportPanelProps) {
 
           <div className="sectionList">
             <div>
-              <strong>Executive summary</strong>
+              <strong>Summary</strong>
               <p>{document.summary.tlDr}</p>
             </div>
             <ListSection
@@ -71,7 +71,7 @@ export function ReportPanel({ document }: ReportPanelProps) {
         </div>
       ) : (
         <p className="meta">
-          Select an indexed document to review its current analysis package.
+          Select a source from the archive to open its latest brief.
         </p>
       )}
     </section>

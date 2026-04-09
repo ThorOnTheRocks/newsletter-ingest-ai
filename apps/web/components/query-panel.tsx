@@ -17,12 +17,13 @@ export function QueryPanel({
   onSubmit,
 }: QueryPanelProps) {
   return (
-    <section className="panel stack">
+    <section className="workspaceSection stack">
       <div className="panelHeader">
-        <h2>Retrieval workspace</h2>
+        <span className="sectionKicker">Retrieval</span>
+        <h2>Ask the archive</h2>
         <p className="meta">
-          Query previously indexed content and return grounded answers with
-          supporting excerpts.
+          Search across stored sources and return a grounded answer with the
+          excerpts that support it.
         </p>
       </div>
 
@@ -34,17 +35,17 @@ export function QueryPanel({
             value={question}
             onChange={(event) => onQuestionChange(event.target.value)}
             style={{ minHeight: 120 }}
-            placeholder="Ask a grounded question across indexed knowledge, for example: What have we stored about agent reliability?"
+            placeholder="What have we saved about AI agent reliability, pricing pressure, GTM shifts, or hiring signals?"
           />
         </div>
         <button className="primaryButton" type="submit" disabled={isQuerying}>
-          {isQuerying ? 'Retrieving...' : 'Run retrieval'}
+          {isQuerying ? 'Searching archive...' : 'Run question'}
         </button>
       </form>
 
       {queryResult ? (
         <div className="answerBox">
-          <strong>Grounded response</strong>
+          <strong>Grounded answer</strong>
           <div>{queryResult.answer}</div>
           {queryResult.citations.map((citation) => (
             <div className="citation" key={citation.chunkId}>
@@ -56,8 +57,7 @@ export function QueryPanel({
         </div>
       ) : (
         <p className="meta">
-          Retrieval results will appear here after at least one document has been
-          indexed.
+          Answers appear here once at least one source has been indexed.
         </p>
       )}
     </section>

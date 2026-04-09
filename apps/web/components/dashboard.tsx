@@ -23,11 +23,16 @@ export function Dashboard() {
   }
 
   return (
-    <main className="shell">
-      <WorkspaceHero />
+    <main className="appShell">
+      <WorkspaceHero
+        documentCount={workspace.documents.length}
+        statusMessage={workspace.statusMessage}
+        isSubmitting={workspace.isSubmitting}
+        activeStageIndex={workspace.activeIngestionStageIndex}
+      />
 
-      <div className="workspaceGrid">
-        <section className="stack workspaceColumn">
+      <div className="workspaceLayout">
+        <section className="stack">
           <IngestionPanel
             title={workspace.form.title}
             source={workspace.form.source}
@@ -45,9 +50,10 @@ export function Dashboard() {
           />
         </section>
 
-        <aside className="stack workspaceColumn workspaceSidebar">
+        <aside className="stack">
           <DocumentLibrary
             documents={workspace.documents}
+            selectedDocumentId={workspace.selectedDocument?.id ?? null}
             onSelectDocument={workspace.actions.selectDocument}
           />
           <QueryPanel

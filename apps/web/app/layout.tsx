@@ -4,7 +4,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Newsletter AI Assistant',
-  description: 'A thin Next.js client for a multi-agent newsletter assistant.',
+  description:
+    'Turn newsletters, notes, and market briefs into reusable team intelligence.',
 }
 
 export default function RootLayout({

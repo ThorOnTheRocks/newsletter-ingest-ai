@@ -2,28 +2,40 @@ import { type DocumentListItem } from '../lib/api'
 
 type DocumentLibraryProps = {
   documents: DocumentListItem[]
+  selectedDocumentId: string | null
   onSelectDocument: (documentId: string) => void | Promise<void>
 }
 
 export function DocumentLibrary({
   documents,
+  selectedDocumentId,
   onSelectDocument,
 }: DocumentLibraryProps) {
   return (
-    <section className="panel libraryPanel">
+    <section className="workspaceSection libraryPanel" id="knowledge-archive">
       <div className="panelHeader">
-        <h2>Knowledge library</h2>
+        <span className="sectionKicker">Archive</span>
+        <h2>Indexed library</h2>
         <p className="meta">
-          Review indexed documents and reopen the latest analysis package.
+          Reopen stored briefs, inspect summaries, and jump back into the last
+          useful source.
         </p>
       </div>
 
       <div className="documentList documentListScrollable">
         {documents.length === 0 ? (
-          <p className="meta">No indexed documents available yet.</p>
+          <p className="meta">No sources indexed yet. Add one to start the archive.</p>
         ) : (
           documents.map((document) => (
-            <article className="documentCard" key={document.id}>
+            <article
+              className={[
+                'documentCard',
+                selectedDocumentId === document.id ? 'documentCardSelected' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')}
+              key={document.id}
+            >
               <strong>{document.title}</strong>
               <div className="meta">
                 {new Date(document.createdAt).toLocaleString()}
@@ -35,7 +47,7 @@ export function DocumentLibrary({
                 type="button"
                 onClick={() => void onSelectDocument(document.id)}
               >
-                Open analysis
+                {selectedDocumentId === document.id ? 'Open brief' : 'View brief'}
               </button>
             </article>
           ))

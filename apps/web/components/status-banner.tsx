@@ -8,7 +8,7 @@ export function StatusBanner({
   statusMessage,
 }: StatusBannerProps) {
   return (
-    <div className={`message${errorMessage ? ' error' : ''}`}>
+    <div className={`message${errorMessage ? ' error' : ' success'}`}>
       {errorMessage || statusMessage}
     </div>
   )

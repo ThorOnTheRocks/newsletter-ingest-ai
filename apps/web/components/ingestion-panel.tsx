@@ -25,19 +25,20 @@ export function IngestionPanel({
   onSubmit,
 }: IngestionPanelProps) {
   return (
-    <section className="panel stack">
+    <section className="workspaceSection stack intakeSection" id="source-intake">
+      <div className="panelHeader">
+        <span className="sectionKicker">Intake</span>
+        <h2>Add a source</h2>
+        <p className="meta">
+          Drop in a newsletter, memo, or market note to generate a reusable
+          brief and searchable memory.
+        </p>
+      </div>
+
       <WorkflowStages
         activeStageIndex={activeStageIndex}
         isSubmitting={isSubmitting}
       />
-
-      <div className="panelHeader">
-        <h2>Source intake</h2>
-        <p className="meta">
-          Submit long-form content for normalization, structured analysis, and
-          retrieval indexing.
-        </p>
-      </div>
 
       <form className="stack" onSubmit={onSubmit}>
         <div className="field">
@@ -56,7 +57,7 @@ export function IngestionPanel({
             id="source"
             value={source}
             onChange={(event) => onSourceChange(event.target.value)}
-            placeholder="Internal research team"
+            placeholder="Benedict Evans, internal strategy, a16z..."
           />
         </div>
 
@@ -66,13 +67,13 @@ export function IngestionPanel({
             id="content"
             value={content}
             onChange={(event) => onContentChange(event.target.value)}
-            placeholder="Paste a newsletter, research note, market brief, or internal memo for structured processing."
+            placeholder="Paste the full text here. The assistant will summarize it, pull out themes and actions, and index it for grounded follow-up questions."
           />
         </div>
 
         <div className="row">
           <button className="primaryButton" type="submit" disabled={isSubmitting}>
-            {isSubmitting ? 'Running workflow...' : 'Process document'}
+            {isSubmitting ? 'Building brief...' : 'Generate brief'}
           </button>
         </div>
       </form>
