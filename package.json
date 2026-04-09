@@ -1,0 +1,15 @@
+{
+  "name": "newsletter-ai-assistant",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace @newsletter-ai-assistant/api",
+    "dev:web": "npm run dev --workspace @newsletter-ai-assistant/web",
+    "build": "npm run build --workspace @newsletter-ai-assistant/api && npm run build --workspace @newsletter-ai-assistant/web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
